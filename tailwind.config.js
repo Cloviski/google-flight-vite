@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'flight-gray': "#9aa0a6",
+        'flight-gray': "#36373a",
       },
     },
   },
