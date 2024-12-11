@@ -1,26 +1,30 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
-async function getOriginAndDestinationIds(originCity, destinationCity) {
-  const options = {
+async function getOriginAndDestinationIds(
+  originCity: string,
+  destinationCity: string,
+) {
+  const apiOptions: AxiosRequestConfig = {
     method: "GET",
     url: "https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport",
     headers: {
       "x-rapidapi-key": "2d01140b49mshbfae649fb78da2bp156bb6jsn3f7a5c0c26c2",
       "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
     },
+    params: { locale: "en-US" }, // Specify params here
   };
 
   try {
     // Fetch origin data
-    options.params = { query: originCity, locale: "en-US" };
-    const originResponse = await axios.request(options);
+    apiOptions.params.query = originCity;
+    const originResponse = await axios.request(apiOptions);
     const originData = originResponse.data.data.find(
       (entity) => entity.navigation.relevantHotelParams.entityType === "CITY",
     );
 
     // Fetch destination data
-    options.params = { query: destinationCity, locale: "en-US" };
-    const destinationResponse = await axios.request(options);
+    apiOptions.params.query = destinationCity;
+    const destinationResponse = await axios.request(apiOptions);
     const destinationData = destinationResponse.data.data.find(
       (entity) => entity.navigation.relevantHotelParams.entityType === "CITY",
     );
