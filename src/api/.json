@@ -1,0 +1,235 @@
+{
+  "status": true,
+  "message": "success",
+  "data": {
+    "context": {
+      "status": "complete",
+      "sessionId": "CjcIARIzCigKJDExOTdiZDA5LThiMGQtNDFiYS1iZWI1LTg3MWQ4NDg5MTBkNBABEI_g2YK7MhgBEih1c3NfZDFkZWNiNjctNDc1Ny00ZTRlLWFiNjctYTljYTNiMmQwMGI5",
+      "totalResults": 183
+    },
+    "itineraries": [
+      {
+        "id": "16536-2412111025--32269-1-16172-2412112115",
+        "price": {
+          "raw": 182.7,
+          "formatted": "$183",
+          "pricingOptionId": "Idc1GILTg16p"
+        },
+        "legs": [
+          {
+            "id": "16536-2412111025--32269-1-16172-2412112115",
+            "origin": {
+              "id": "SSA",
+              "entityId": "95673396",
+              "name": "Salvador",
+              "displayCode": "SSA",
+              "city": "Salvador",
+              "country": "Brazil",
+              "isHighlighted": false
+            },
+            "destination": {
+              "id": "SDU",
+              "entityId": "95673346",
+              "name": "Rio De Janeiro Santos Dumont",
+              "displayCode": "SDU",
+              "city": "Rio De Janeiro",
+              "country": "Brazil",
+              "isHighlighted": false
+            },
+            "durationInMinutes": 650,
+            "stopCount": 1,
+            "isSmallestStops": false,
+            "departure": "2024-12-11T10:25:00",
+            "arrival": "2024-12-11T21:15:00",
+            "timeDeltaInDays": 0,
+            "carriers": {
+              "marketing": [
+                {
+                  "id": -32269,
+                  "alternateId": "G3",
+                  "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/G3.png",
+                  "name": "GOL Linhas Aéreas"
+                }
+              ],
+              "operationType": "fully_operated"
+            },
+            "segments": [
+              {
+                "id": "16536-10482-2412111025-2412111300--32269",
+                "origin": {
+                  "flightPlaceId": "SSA",
+                  "displayCode": "SSA",
+                  "parent": {
+                    "flightPlaceId": "SSAA",
+                    "displayCode": "SSA",
+                    "name": "Salvador",
+                    "type": "City"
+                  },
+                  "name": "Salvador",
+                  "type": "Airport",
+                  "country": "Brazil"
+                },
+                "destination": {
+                  "flightPlaceId": "CGH",
+                  "displayCode": "CGH",
+                  "parent": {
+                    "flightPlaceId": "SAOA",
+                    "displayCode": "SAO",
+                    "name": "Sao Paulo",
+                    "type": "City"
+                  },
+                  "name": "Sao Paulo Congonhas",
+                  "type": "Airport",
+                  "country": "Brazil"
+                },
+                "departure": "2024-12-11T10:25:00",
+                "arrival": "2024-12-11T13:00:00",
+                "durationInMinutes": 155,
+                "flightNumber": "1511",
+                "marketingCarrier": {
+                  "id": -32269,
+                  "name": "GOL Linhas Aéreas",
+                  "alternateId": "G3",
+                  "allianceId": 0,
+                  "displayCode": ""
+                },
+                "operatingCarrier": {
+                  "id": -32269,
+                  "name": "GOL Linhas Aéreas",
+                  "alternateId": "G3",
+                  "allianceId": 0,
+                  "displayCode": ""
+                }
+              },
+              {
+                "id": "10482-16172-2412112010-2412112115--32269",
+                "origin": {
+                  "flightPlaceId": "CGH",
+                  "displayCode": "CGH",
+                  "parent": {
+                    "flightPlaceId": "SAOA",
+                    "displayCode": "SAO",
+                    "name": "Sao Paulo",
+                    "type": "City"
+                  },
+                  "name": "Sao Paulo Congonhas",
+                  "type": "Airport",
+                  "country": "Brazil"
+                },
+                "destination": {
+                  "flightPlaceId": "SDU",
+                  "displayCode": "SDU",
+                  "parent": {
+                    "flightPlaceId": "RIOA",
+                    "displayCode": "RIO",
+                    "name": "Rio De Janeiro",
+                    "type": "City"
+                  },
+                  "name": "Rio De Janeiro Santos Dumont",
+                  "type": "Airport",
+                  "country": "Brazil"
+                },
+                "departure": "2024-12-11T20:10:00",
+                "arrival": "2024-12-11T21:15:00",
+                "durationInMinutes": 65,
+                "flightNumber": "1046",
+                "marketingCarrier": {
+                  "id": -32269,
+                  "name": "GOL Linhas Aéreas",
+                  "alternateId": "G3",
+                  "allianceId": 0,
+                  "displayCode": ""
+                },
+                "operatingCarrier": {
+                  "id": -32269,
+                  "name": "GOL Linhas Aéreas",
+                  "alternateId": "G3",
+                  "allianceId": 0,
+                  "displayCode": ""
+                }
+              }
+            ]
+          }
+        ],
+        "isSelfTransfer": false,
+        "isProtectedSelfTransfer": false,
+        "farePolicy": {
+          "isChangeAllowed": false,
+          "isPartiallyChangeable": false,
+          "isCancellationAllowed": false,
+          "isPartiallyRefundable": false
+        },
+        "fareAttributes": {},
+        "isMashUp": false,
+        "hasFlexibleOptions": false,
+        "score": 0.999
+      }
+    ],
+    "messages": [],
+    "filterStats": {
+      "duration": {
+        "min": 125,
+        "max": 1340,
+        "multiCityMin": 125,
+        "multiCityMax": 1340
+      },
+      "airports": [
+        {
+          "city": "Rio De Janeiro",
+          "airports": [
+            { "id": "RRJ", "entityId": "216766169", "name": "Jacarepaguá" },
+            {
+              "id": "GIG",
+              "entityId": "95673347",
+              "name": "Rio De Janeiro Internacional"
+            },
+            {
+              "id": "SDU",
+              "entityId": "95673346",
+              "name": "Rio De Janeiro Santos Dumont"
+            }
+          ]
+        },
+        {
+          "city": "Salvador",
+          "airports": [
+            { "id": "SSA", "entityId": "95673396", "name": "Salvador" }
+          ]
+        }
+      ],
+      "carriers": [
+        {
+          "id": -32737,
+          "alternateId": "AR",
+          "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/AR.png",
+          "name": "Aerolineas Argentinas"
+        },
+        {
+          "id": -32531,
+          "alternateId": "AD",
+          "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/AD.png",
+          "name": "Azul Airlines"
+        },
+        {
+          "id": -32269,
+          "alternateId": "G3",
+          "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/G3.png",
+          "name": "GOL Linhas Aéreas"
+        },
+        {
+          "id": -32115,
+          "alternateId": "LA",
+          "logoUrl": "https://logos.skyscnr.com/images/airlines/favicon/LA.png",
+          "name": "LATAM Airlines"
+        }
+      ],
+      "stopPrices": {
+        "direct": { "isPresent": true, "formattedPrice": "$456" },
+        "one": { "isPresent": true, "formattedPrice": "$179" },
+        "twoOrMore": { "isPresent": true, "formattedPrice": "$205" }
+      }
+    },
+    "flightsSessionId": "1197bd09-8b0d-41ba-beb5-871d848910d4",
+    "destinationImageUrl": "https://content.skyscnr.com/m/3719e8f4a5daf43d/original/Flights-Placeholder.jpg"
+  }
+}
