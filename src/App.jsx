@@ -13,15 +13,14 @@ function App() {
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState(""); //unused
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(originCity, destinationCity, date);
     if (!originCity || !destinationCity || !date) {
       alert("Please fill out all required fields.");
       return;
     }
-    fetchFlights(originCity, destinationCity, date, setFlights)
-
+    fetchFlights(originCity, destinationCity, date, setFlights);
   };
 
   return (
