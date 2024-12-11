@@ -13,7 +13,7 @@ function App() {
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState(""); //unused
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(originCity, destinationCity, date);
     if (!originCity || !destinationCity || !date) {
