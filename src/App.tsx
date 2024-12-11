@@ -1,8 +1,8 @@
 import { useState } from "react";
 import SearchIcon from "./assets/search.svg";
 import ExchangeIcon from "./assets/exchange.svg";
-import FlightCard from "./components/flightCard";
-import { fetchFlights } from "./api/searchFlights";
+import FlightCard from "./components/flightCard.tsx";
+import { fetchFlights } from "./api/searchFlights.ts";
 
 function App() {
   const [flights, setFlights] = useState([]);

@@ -40,11 +40,11 @@ const FlightCard = ({ flight }) => {
           })}
         </span>
         <span className="text-xs text-[#9aa0a6]">{airlineName}</span>
-        <span className="text-xs text-base font-medium md:hidden">
-            {stopCount === 0
-              ? "Non-stop"
-              : `${stopCount} stop${stopCount > 1 ? "s" : ""}`}
-          </span>
+        <span className="text-base text-xs font-medium md:hidden">
+          {stopCount === 0
+            ? "Non-stop"
+            : `${stopCount} stop${stopCount > 1 ? "s" : ""}`}
+        </span>
       </div>
 
       {/* Duration and Route */}
