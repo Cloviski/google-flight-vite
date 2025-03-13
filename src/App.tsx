@@ -6,21 +6,37 @@ import { fetchFlights } from "./api/searchFlights.ts";
 
 function App() {
   const [flights, setFlights] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [tripType, setTripType] = useState("one_way"); // Default trip type
-  const [classType, setClassType] = useState("economy"); //unused
+  const [classType, setClassType] = useState("economy");
   const [originCity, setOriginCity] = useState("");
   const [destinationCity, setDestinationCity] = useState("");
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState(""); //unused
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(originCity, destinationCity, date);
+    console.log(originCity, destinationCity, date, classType);
+  
     if (!originCity || !destinationCity || !date) {
       alert("Please fill out all required fields.");
       return;
     }
-    fetchFlights(originCity, destinationCity, date, setFlights);
+  
+    setLoading(true); // Start loading
+  
+    try {
+      await fetchFlights(originCity, destinationCity, date, classType, setFlights);
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    } finally {
+      setLoading(false); // Stop loading AFTER API call finishes
+    }
+  };
+
+  const swapValues = () => {
+    setOriginCity(destinationCity);
+    setDestinationCity(originCity);
   };
 
   return (
@@ -59,7 +75,10 @@ function App() {
                 value={originCity}
                 onChange={(e) => setOriginCity(e.target.value)}
               />
-              <div className="flex h-14 w-2 items-center justify-center">
+              <div
+                onClick={swapValues}
+                className="flex h-14 w-2 items-center justify-center"
+              >
                 <div className="absolute rounded-full border border-[#5f6368] bg-flight-gray p-2 hover:bg-[#3d3e3e]">
                   <img className="size-4" src={ExchangeIcon} />
                 </div>
@@ -98,9 +117,15 @@ function App() {
           </div>
         </form>
         <div className="mt-12 flex w-full flex-col rounded-lg border border-[#5f6368] last:border-b">
-          {flights.map((itinerary, index) => (
-            <FlightCard key={index} flight={itinerary} />
-          ))}
+          {loading ? (
+            <div className="my-4 flex items-center justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-white"></div>
+            </div>
+          ) : (
+            flights.map((flight) => (
+              <FlightCard key={flight.id} flight={flight} />
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -108,18 +133,3 @@ function App() {
 }
 
 export default App;
-
-/*
-What I need for final result
-1. duration
-2. airport code departure and destiny
-3. how many stops
-4. price
-5. company and logo
-*/
-
-/*
-          {flights.map((itinerary, index) => (
-            <FlightCard key={index} flight={itinerary} />
-          ))}
-*/
