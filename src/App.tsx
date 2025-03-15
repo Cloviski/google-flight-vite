@@ -5,6 +5,7 @@ import FlightCard from "./components/flightCard.tsx";
 import { fetchFlights } from "./api/searchFlights.ts";
 
 function App() {
+  const [sortBy, setSortBy] = useState("best");
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(false);
   const [tripType, setTripType] = useState("one_way"); // Default trip type
@@ -14,19 +15,51 @@ function App() {
   const [date, setDate] = useState("");
   const [endDate, setEndDate] = useState(""); //unused
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(originCity, destinationCity, date, classType);
-  
+  const fetchSortedFlights = async (sortType) => {
     if (!originCity || !destinationCity || !date) {
       alert("Please fill out all required fields.");
       return;
     }
-  
-    setLoading(true); // Start loading
-  
+
+    setLoading(true);
+    setSortBy(sortType);
+
     try {
-      await fetchFlights(originCity, destinationCity, date, classType, setFlights);
+      // Use the same fetchFlights function that's used in form submission
+      await fetchFlights(
+        originCity,
+        destinationCity,
+        date,
+        classType,
+        sortType,
+        setFlights,
+      );
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(originCity, destinationCity, date, classType, sortBy);
+
+    if (!originCity || !destinationCity || !date) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    setLoading(true); // Start loading
+    try {
+      await fetchFlights(
+        originCity,
+        destinationCity,
+        date,
+        classType,
+        sortBy,
+        setFlights,
+      );
     } catch (error) {
       console.error("Error fetching flights:", error);
     } finally {
@@ -116,15 +149,46 @@ function App() {
             </button>
           </div>
         </form>
+        <div className="mt-12 flex w-full">
+          <div
+            className={`flex min-h-14 w-full cursor-pointer items-center justify-center rounded-l-lg border border-[#5f6368] px-6 py-[10px] text-center ${
+              sortBy === "best"
+                ? "border-[#8ab4f8] bg-[#394457] text-white"
+                : "hover:bg-gray-600"
+            }`}
+            onClick={() => fetchSortedFlights("best")}
+          >
+            <span className="font-medium">Best</span>
+          </div>
+          <div
+            className={`flex min-h-14 w-full cursor-pointer items-center justify-center rounded-r-lg border-y border-r border-[#5f6368] border-l-transparent px-6 py-[10px] text-center ${
+              sortBy === "price_high"
+                ? "border-[#8ab4f8] bg-[#394457] text-white"
+                : null
+            }`}
+            onClick={() => fetchSortedFlights("price_high")}
+          >
+            <span className="font-medium">Cheapest</span>
+            {sortBy === "price_high" && (
+              <span className="ml-2 text-xs text-green-400">from R$2,531</span>
+            )}
+          </div>
+        </div>
         <div className="mt-12 flex w-full flex-col rounded-lg border border-[#5f6368] last:border-b">
           {loading ? (
             <div className="my-4 flex items-center justify-center">
               <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-white"></div>
             </div>
-          ) : (
-            flights.map((flight) => (
-              <FlightCard key={flight.id} flight={flight} />
+          ) : flights.length > 0 ? (
+            flights.map((flight, index) => (
+              <FlightCard
+                key={flight.id}
+                flight={flight}
+                isLast={index === flights.length - 1}
+              />
             ))
+          ) : (
+            <div className="my-4 text-center text-white">No flights found.</div> // ✅ Prevent UI from disappearing
           )}
         </div>
       </div>

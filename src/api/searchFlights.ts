@@ -40,7 +40,7 @@ async function getOriginAndDestinationIds(
   }
 }
 
-async function getFlightDetails(originEntityId, destinationEntityId, date, cabinClass) {
+async function getFlightDetails(originEntityId, destinationEntityId, date, cabinClass, sortBy) {
   const options = {
     method: "GET",
     url: "https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlightsComplete",
@@ -52,7 +52,7 @@ async function getFlightDetails(originEntityId, destinationEntityId, date, cabin
       date,
       cabinClass,
       adults: "1",
-      sortBy: "best",
+      sortBy,
       currency: "USD",
       market: "en-US",
       countryCode: "US",
@@ -72,7 +72,7 @@ async function getFlightDetails(originEntityId, destinationEntityId, date, cabin
   }
 }
 
-async function fetchFlights(originCity, destinationCity, date, cabinClass, setFlights) {
+async function fetchFlights(originCity, destinationCity, date, cabinClass, sortBy, setFlights) {
   const ids = await getOriginAndDestinationIds(originCity, destinationCity);
 
   if (!ids || !ids.originEntityId || !ids.destinationEntityId) {
@@ -86,6 +86,7 @@ async function fetchFlights(originCity, destinationCity, date, cabinClass, setFl
     ids.destinationEntityId,
     date,
     cabinClass,
+    sortBy
   );
 
   if (flightDetails) {

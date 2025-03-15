@@ -1,4 +1,4 @@
-const FlightCard = ({ flight }) => {
+const FlightCard = ({ flight, isLast }) => {
   const leg = flight.legs[0];
   const {
     carriers: { marketing },
@@ -16,7 +16,9 @@ const FlightCard = ({ flight }) => {
   const formattedDuration = `${Math.floor(durationInMinutes / 60)} hrs ${durationInMinutes % 60} min`;
 
   return (
-    <div className="flex min-h-[42px] w-full text-nowrap rounded-bl-lg rounded-br-lg py-4 pl-4 pr-8 md:pr-12">
+    <div
+      className={`flex min-h-[42px] w-full text-nowrap py-4 pl-4 pr-8 md:pr-12 ${!isLast ? "border-b border-[#5f6368]" : ""}`}
+    >
       {/* Airline Logo */}
       <div className="hidden items-center pr-6 md:flex">
         <img
@@ -66,7 +68,7 @@ const FlightCard = ({ flight }) => {
 
       {/* Price */}
       <div className="flex grow items-center justify-end">
-        <span className="text-base font-medium">{totalPrice}</span>
+        <span className={`text-base font-medium ${flight?.tags?.includes("cheapest") ? "text-green-500" : ""}`}>{totalPrice}</span>
       </div>
     </div>
   );
@@ -74,6 +76,3 @@ const FlightCard = ({ flight }) => {
 
 export default FlightCard;
 
-/*
-
-*/
